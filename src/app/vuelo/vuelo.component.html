@@ -1,0 +1,97 @@
+<div class="conteiner">
+  <div class="row first-section">
+    <div class="col-6 card text-center newHotel">
+      <h2>Nuevo Vuelo</h2>
+      <div>
+        <label>Avion:
+          <input #avion />
+        </label>
+      </div>
+      <div>
+        <label>Origen:
+          <input #origen />
+        </label>
+      </div>
+      <div>
+        <label>Destino:
+          <input #destino />
+        </label>
+      </div>
+      <div>
+        <label>Fecha (yyyy-mm-dd):
+          <input #fechasalida />
+        </label>
+      </div>
+      <div>
+        <label>Hora (hh:mm:dd):
+          <input #horasalida />
+        </label>
+      </div>
+      <div>
+        <label>Tarifa Base:
+          <input #tarifabase />
+        </label>
+      </div>
+      <div>
+        <label>Tarifa Niño:
+          <input #tarifanino />
+        </label>
+      </div>
+      <div>
+        <label>Tarifa Adulto:
+          <input #tarifaadulto />
+        </label>
+      </div>
+      <div>
+        <label>Tarifa FC:
+          <input #tarifafc />
+        </label>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary" 
+        (click)="save(avion.value,origen.value,destino.value,fechasalida.value,horasalida.value,tarifabase.value,tarifanino.value,tarifaadulto.value,tarifafc.value);
+        avion.value='';origen.value='';destino.value='';fechasalida.value='';horasalida.value='';tarifabase.value='';tarifanino.value='';tarifaadulto.value='';tarifafc.value=''">
+          Agregar
+        </button>
+      </div>
+    </div>
+
+    <div class="col-6 card" *ngIf="select">
+      <h2 class="text-center">Informacion de vuelo</h2>
+      <ul>
+        <li><strong>Avion:</strong> {{vuelo.avion}}</li>
+        <li><strong>Origen:</strong> {{vuelo.origen}}</li>
+        <li><strong>Destino:</strong> {{vuelo.destino}}</li>
+        <li><strong>Fecha:</strong> {{vuelo.fechasalida}}</li>
+        <li><strong>Hora:</strong> {{vuelo.horasalida}}</li>
+        <li><strong>Tarifa base:</strong> {{vuelo.tarifabase}}</li>
+        <li><strong>Tarifa niño:</strong> {{vuelo.tarifanino}}</li>
+        <li><strong>Tarifa adulto:</strong> {{vuelo.tarifaadulto}}</li>
+        <li><strong>Tarifa FC:</strong> {{vuelo.tarifafc}}</li>
+        <li><strong>Comprado:</strong> {{vuelo.comprado}}</li>
+      </ul>
+      <button class="btn btn-danger" (click)="eliminar(vuelo.id)">Eliminar</button>
+    </div>
+  </div>
+
+  <div class="list-section">
+    <h2>Lista de Vuelos</h2>
+
+    <table class="table" *ngIf="vuelos">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Avion</th>
+        <th scope="col">Origen</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Fecha</th>
+      </tr>
+      <tr *ngFor="let vuelo of vuelos" (click)="selectedItem(vuelo.id)">
+        <td scope="row">{{vuelo.id}}</td>
+        <td>{{vuelo.avion}}</td>
+        <td>{{vuelo.origen}}</td>
+        <td>{{vuelo.destino}}</td>
+        <td>{{vuelo.fechasalida}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

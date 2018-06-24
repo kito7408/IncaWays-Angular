@@ -1,0 +1,11 @@
+.textInfo{
+  margin: 20%;
+}
+
+.imageFront{
+  background-image: url('../images/hotel.jpg');
+  height: 180px;
+  width: 300px;
+  background-repeat: no-repeat;
+  margin-left: 30%;
+}

@@ -1,0 +1,110 @@
+<div class="conteiner">
+  <div class="row first-section">
+    <div class="col-6 card text-center newHotel">
+      <h2>Nueva Estadia</h2>
+      <div>
+        <label>Direccion:
+          <input #direccion />
+        </label>
+      </div>
+      <div>
+        <label>Ciudad:
+          <input #ciudad />
+        </label>
+      </div>
+      <div>
+        <label>Pais:
+          <input #pais />
+        </label>
+      </div>
+      <div>
+        <label>Costo x dia:
+          <input type="number" #costoxdia />
+        </label>
+      </div>
+      <div>
+        <label>Tipo de estadia:
+          <select  #tipoestadia>
+            <option value="Simple">Simple</option>
+            <option value="Intermedia">Intermedia</option>
+            <option value="Compleja">Compleja</option>
+          </select>
+        </label>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary" 
+        (click)="save(direccion.value,ciudad.value,pais.value,costoxdia.value,tipoestadia.value);
+        direccion.value='';ciudad.value='';pais.value='';costoxdia.value=''">
+          Agregar
+        </button>
+      </div>
+    </div>
+
+    <div class="col-6 card" *ngIf="select">
+      <h2 class="text-center">Informacion de estadia</h2>
+      <ul>
+        <li>
+          <strong>Direccion:</strong> {{estadia.direccion}}
+          <input *ngIf="update" #direccionActualizar>
+        </li>
+        <li>
+          <strong>Ciudad:</strong> {{estadia.ciudad}}
+          <input *ngIf="update" #ciudadActualizar>
+        </li>
+        <li>
+          <strong>Pais:</strong> {{estadia.pais}}
+          <input *ngIf="update" #paisActualizar>
+        </li>
+        <li>
+          <strong>Costo x dia:</strong> {{estadia.costoxdia}}
+          <input *ngIf="update" #costoxdiaActualizar>
+        </li>
+        <li>
+          <strong>Tipo de estadia:</strong> {{estadia.tipoestadia}}
+          <select  #tipoestadiaActualizar *ngIf="update">
+            <option value="Simple">Simple</option>
+            <option value="Intermedia">Intermedia</option>
+            <option value="Compleja">Compleja</option>
+          </select>
+        </li>
+        <li>
+          <strong>Comprado:</strong> {{estadia.comprado}}
+          <select #compradoActualizar *ngIf="update">
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </li>
+      </ul>
+      <p class="text-center" *ngIf="!update">
+      <button class="btn btn-secondary" (click)="porActualizar()">Actualizar</button>
+      <button class="btn btn-danger" (click)="eliminar(estadia.id)">Eliminar</button>
+      </p>
+      <p class="text-center" *ngIf="update">
+        <button class="btn btn-success" (click)="actualizar(estadia.id,direccionActualizar.value,ciudadActualizar.value,paisActualizar.value,costoxdiaActualizar.value,tipoestadiaActualizar.value,compradoActualizar.value);
+        direccionActualizar.value='';ciudadActualizar.value='';paisActualizar.value='';costoxdiaActualizar.value=''">Guardar</button>
+        <button class="btn btn-danger" (click)="actualizarCancel()">Cancel</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="list-section">
+    <h2>Lista de Estadias</h2>
+
+    <table class="table" *ngIf="estadias">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Ciudad</th>
+        <th scope="col">Pais</th>
+        <th scope="col">Costo x dia</th>
+        <th scope="col">Tipo de Estadia</th>
+      </tr>
+      <tr *ngFor="let estadia of estadias" (click)="selectedItem(estadia.id)">
+        <td scope="row">{{estadia.id}}</td>
+        <td>{{estadia.ciudad}}</td>
+        <td>{{estadia.pais}}</td>
+        <td>{{estadia.costoxdia}}</td>
+        <td>{{estadia.tipoestadia}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
